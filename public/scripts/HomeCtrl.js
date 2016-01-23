@@ -18,6 +18,7 @@
     function fileUploaded(err, response) {
       if (err)
         return home.error = err;
+      window.location.href = '/';
     }
   });
 
