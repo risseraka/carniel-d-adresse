@@ -8,7 +8,7 @@
     home.carnet = $rootScope.carnet;
 
     home.uploadFile = function() {
-      fileUpload.uploadFileToUrl($scope.file, '/', fileUploaded);
+      fileUpload.uploadFileToUrl($scope.file, '/upload', fileUploaded);
     };
 
     home.removeContact = function(id) {
