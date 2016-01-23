@@ -1,0 +1,23 @@
+{
+  "name": "carniel-d-adresse",
+  "homepage": "https://github.com/risseraka/carniel-d-adresse",
+  "authors": [
+    "jmpp <jmclery@gmail.com>"
+  ],
+  "description": "Carnet d'adresse de Xavier Niel",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-ui-router": "~0.2.15"
+  }
+}
