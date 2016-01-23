@@ -18,7 +18,11 @@
   "homepage": "https://github.com/risseraka/carniel-d-adresse#readme",
   "dependencies": {
     "babel-register": "^6.4.3",
+    "body-parser": "^1.14.2",
+    "connect-busboy": "0.0.2",
+    "elasticsearch": "^10.1.2",
     "express": "^4.13.4",
+    "morgan": "^1.6.1",
     "pm2": "^1.0.0"
   }
 }
