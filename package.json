@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/risseraka/carniel-d-adresse#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "babel-register": "^6.4.3",
+    "express": "^4.13.4",
+    "pm2": "^1.0.0"
   }
 }
