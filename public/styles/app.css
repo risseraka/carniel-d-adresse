@@ -1,0 +1,11 @@
+.table-contacts {
+  width: 100%;
+}
+
+.form-control-xs {
+  max-width: 60px;
+}
+
+.form-control-sm {
+  max-width: 110px;
+}

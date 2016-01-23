@@ -1,1 +1,123 @@
-<h1>Accueil !</h1>
+<div class="jumbotron">
+  <div class="container">
+    <h1>CarNiel d'adresses</h1>
+    <p>L'application de gestion des contacts prévue spécialement pour le chef de l'Ecole.<br>
+      On dit merci qui ? Merci les p'tits devs :)</p>
+    <div ng-show="home.carnet.length === 0">
+      <p>Bon, pour commencer, il semblerait que tu n'aies aucun contact d'importé ! Pas bien.<br>
+        Commence-donc par ajouter des contacts :</p>
+      <p>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#importModal">
+          <i class="glyphicon glyphicon-import"></i> Importer des contacts
+        </button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Liste des contacts -->
+<div class="container">
+  <div class="pull-right">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#formContactModal">
+      <i class="glyphicon glyphicon-plus"></i> Ajouter un contact
+    </button>
+  </div>
+  <table class="table-condensed table-striped table-bordered table-contacts">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th colspan="2">Adresse postale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contact in home.carnet track by $index">
+        <td>{{contact.lastname | uppercase}}</td>
+        <td>{{contact.firstname}}</td>
+        <td>{{contact.number}}, {{contact.street}} {{contact.postcode}} {{contact.city | uppercase}}</td>
+        <td class="text-right">
+          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#formContactModal"><i class="glyphicon glyphicon-edit"></i></button>
+          <button type="button" class="btn btn-danger btn-xs" ng-click="home.removeContact(contact.id)"><i class="glyphicon glyphicon-remove"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Fin Liste des contacts -->
+
+
+<!-- Modal Gestion d'un contact -->
+<div class="modal fade" id="formContactModal" tabindex="-1" role="dialog" aria-labelledby="ContactModalLabel">
+  <div class="modal-dialog" role="document">
+    <form action="#" novalidate ng-submit="home.addContact()"></form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="ContactModalLabel">Contact</h4>
+        </div>
+        <div class="modal-body">
+          <label class="form-group">
+            Nom : <input type="text" name="nom" class="form-control">
+          </label>
+          <label class="form-group">
+            Prénom : <input type="text" name="prenom" class="form-control">
+          </label>
+          <br>
+          <label class="form-group">
+            N° : <input type="number" name="numero" class="form-control form-control-xs">
+          </label>
+          <label class="form-group">
+            Adresse : <input type="text" name="adresse" class="form-control">
+          </label>
+          <label class="form-group">
+            Code postal : <input type="number" name="cp" class="form-control form-control-sm">
+          </label>
+          <label class="form-group">
+            Ville : <input type="text" name="ville" class="form-control">
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Ok</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Fin Modal Gestion d'un contact -->
+
+<!-- Modal Import -->
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="ImportModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="ImportModalLabel">Import de carnet de contacts</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="alert alert-danger" ng-show="home.error"><b>Oups</b> : {{home.error}}</div>
+          <label for="carnet"></label>
+          <input type="file" name="file" file-model="file" id="carnet" class="form-control">
+          <small class="help-block">Le fichier doit être au format JSON et respecter la convention suivante :
+<code><pre>
+[
+{
+  "number"    :"1",
+  "street"    :"Rue Saint-Laurent",
+  "city"      :"Paris 10e Arrondissement",
+  "postcode"  :"75010",
+  "firstname" :"Aaron",
+  "lastname"  :"Desamparo"
+},
+...
+]</pre></code>
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="home.uploadFile()" class="btn btn-primary">Importer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin Modal Import -->
